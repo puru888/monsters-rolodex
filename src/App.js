@@ -28,10 +28,19 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
+        <input className = 'search-box' type = 'search'
+        onChange={(event) =>{
+           const searchString = event.target.value.toLocaleLowerCase();
+           const filteredMonsters = this.state.monsters.filter((monster) => {
+              return monster.name.toLocaleLowerCase().includes(searchString);
+            })
+            this.setState({monsters : filteredMonsters})
+        }}
+        />
       {
         this.state.monsters.map(
           (monster) => {
-            return( 
+            return(
               <div key={monster.id}>
               <h1>{monster.name}</h1>
               </div>
